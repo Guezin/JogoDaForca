@@ -11,7 +11,8 @@ export default class Main extends Component {
         this.state = {
             palavraUsuario: '',
             palavraSecreta: [],
-            palavraOculta: []
+            palavraOculta: [],
+            letrasErradas: []
         }
     }
 
@@ -55,13 +56,24 @@ export default class Main extends Component {
         }
         
         if(!state.palavraSecreta.includes(state.palavraUsuario)) {
-            alert(`Você Errou. ' ${state.palavraUsuario} '`)
+            state.letrasErradas.push(state.palavraUsuario)
+            this.setState({ 
+                palavraUsuario: '',
+                letrasErradas: state.letrasErradas
+            })
         }
     }
     
     render() {
     return (
         <div className='container'>
+            <div className="letrasErradas">
+                { this.state.letrasErradas.map((letras, indice) => (
+                    <div key={indice}>
+                        { letras }
+                    </div>
+                ))}
+            </div>
             <div className='input'>
                 <Input 
                     onChange={(evento) => this.pegaValorInput(evento) }
@@ -87,13 +99,11 @@ export default class Main extends Component {
                     />
             </div>
             <div className='letras'>
-                {this.state.palavraOculta.map((letras, indice) => {
-                    return (
-                        <div key={indice}>
-                            {letras} 
-                        </div>
-                    )
-                })}
+                {this.state.palavraOculta.map((letras, indice) => (
+                    <div key={indice}>
+                        {letras} 
+                    </div>
+                ))}
             </div>
 
         </div>
