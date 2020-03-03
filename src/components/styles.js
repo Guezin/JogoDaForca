@@ -15,6 +15,7 @@ export const Board = styled.div`
   align-items: center;
 
   p {
+    margin-top: 50px;
     font-size: 36px;
   }
 

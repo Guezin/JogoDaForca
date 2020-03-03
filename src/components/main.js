@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { Container, Board } from './styles';
 
@@ -11,7 +12,7 @@ export default function Main() {
 
   function handleWord(event) {
     setCheckIsEmpty(false);
-    setWord(event.target.value);
+    setWord(event.target.value.toUpperCase());
   }
 
   function salveSecretWord() {
@@ -32,6 +33,9 @@ export default function Main() {
         copyHiddeSecretWord[letter] = word;
       }
     }
+
+    if (!secretWord.includes(word))
+      toast.error(`A letra '${word}' não existe na palavra!`);
 
     setHiddenSecretWord(copyHiddeSecretWord);
     setCheckIsEmpty(true);
