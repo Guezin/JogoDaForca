@@ -1,6 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import Main from './Components/Main'
+import Main from './components/main';
+import GlobalStyles from './styles/global';
 
-ReactDOM.render(<Main />, document.getElementById('root'))
+ReactDOM.render(
+  <>
+    <GlobalStyles />
+    <Main />
+  </>,
+  document.getElementById('root')
+);
